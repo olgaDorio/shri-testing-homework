@@ -1,1 +1,4 @@
 node_modules
+hermione-html-reporter
+.nyc_output
+coverage
