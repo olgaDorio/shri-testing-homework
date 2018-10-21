@@ -2,11 +2,11 @@ function buildFolderUrl(parentHash, path = '') {
   return `/files/${parentHash}/${path}`;
 }
 
-function buildFileUrl(parentHash, path) {
+function buildFileUrl(parentHash, path = '') {
   return `/content/${parentHash}/${path}`;
 }
 
-function buildBreadcrumbs(hash, path) {
+function buildBreadcrumbs(hash, path = '') {
   const bc = [
     {
       text: 'HISTORY',
@@ -15,8 +15,8 @@ function buildBreadcrumbs(hash, path) {
   ];
 
   if (hash) {
-    const normalizedPath = (path || '').split('/').filter(Boolean);
-    const [currentName] = normalizedPath.slice(-1);
+    const normalizedPath = path.split('/').filter(Boolean);
+    const [ currentName ] = normalizedPath.slice(-1);
 
     // root folder
     bc.push({
@@ -45,8 +45,23 @@ function buildBreadcrumbs(hash, path) {
   return bc;
 }
 
+function buildObjectUrl(parentHash, { path, type }) {
+  this.buildFileUrl = this.buildFileUrl || buildFileUrl;
+  this.buildFolderUrl = this.buildFolderUrl || buildFolderUrl;
+
+  switch (type) {
+    case 'tree':
+      return this.buildFolderUrl(parentHash, path);
+    case 'blob':
+      return this.buildFileUrl(parentHash, path);
+    default:
+      return '#';
+  }
+}
+
 module.exports = {
-  buildFolderUrl,
   buildFileUrl,
-  buildBreadcrumbs
+  buildFolderUrl,
+  buildObjectUrl,
+  buildBreadcrumbs,
 };

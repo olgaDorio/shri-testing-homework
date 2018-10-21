@@ -27,36 +27,40 @@ function parseHistoryItem(line) {
 }
 
 function gitHistory(page = 1, size = 10) {
-  const offset = (page - 1) * size;
+  this.page = page > 0 ? page : 1;
+  this.size = size > 0 ? size : 10;
+  this.offset = (this.page - 1) * this.size;
+  this.executeGit = this.executeGit || executeGit;
 
-  return executeGit('git', [
+  return this.executeGit('git', [
     'log',
     '--pretty=format:%H%x09%an%x09%ad%x09%s',
     '--date=iso',
     '--skip',
-    offset,
+    this.offset,
     '-n',
-    size
+    this.size
   ]).then(data => {
     return data
       .split('\n')
       .filter(Boolean)
       .map(parseHistoryItem);
-  });
+  }).catch(console.log);
 }
 
 function parseFileTreeItem(line) {
   const [info, path] = line.split('\t');
   const [, type, hash] = info.split(' ');
-
   return { type, hash, path };
 }
 
 function gitFileTree(hash, path) {
-  const params = ['ls-tree', hash];
-  path && params.push(path);
+  this.params = ['ls-tree', hash];
+  path && this.params.push(path);
 
-  return executeGit('git', params).then(data => {
+  this.executeGit = this.executeGit || executeGit;
+
+  return this.executeGit('git', this.params).then(data => {
     return data
       .split('\n')
       .filter(Boolean)
@@ -65,11 +69,12 @@ function gitFileTree(hash, path) {
 }
 
 function gitFileContent(hash) {
-  return executeGit('git', ['show', hash]);
+  this.executeGit = this.executeGit || executeGit;
+  return this.executeGit('git', ['show', hash]);
 }
 
 module.exports = {
   gitHistory,
   gitFileTree,
-  gitFileContent
+  gitFileContent,
 };
