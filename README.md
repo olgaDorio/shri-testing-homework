@@ -11,8 +11,12 @@ npm start
 ### Интеграционные тесты
 ```sh
 selenium-standalone start # http://0.0.0.0:4444/wd/hub
-npm run itest
 ```
+Далее
+
+`npm run itest` - запускает hermione  
+или  
+`npm run itest-initial` - запускает hermione с флагом `--update-refs`  
 
 ### Модульные тесты
 ```sh
