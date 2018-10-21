@@ -8,6 +8,7 @@
     "devstart": "ndb ./bin/www",
     "itest": "./node_modules/.bin/hermione hermione",
     "itest-gui": "./node_modules/.bin/hermione gui hermione",
+    "itest-initial": "./node_modules/.bin/hermione hermione --update-refs",
     "utest": "./node_modules/.bin/nyc ./node_modules/.bin/mocha test",
     "test": "npm run itest && npm run utest",
     "lint": "./node_modules/.bin/eslint hermione/*.js hermione-custom-commands/*.js test/*.js --fix"
