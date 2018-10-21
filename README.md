@@ -40,5 +40,3 @@ npm run utest
     Вызов функции `gitFileContent`
     Получение содержимого файла
     Рендер страницы `views/content.hbs`
-  3.4. обработка ошибок в app.js
-    Рендер страницы `views/error.hbs`

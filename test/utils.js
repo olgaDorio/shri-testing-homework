@@ -16,7 +16,6 @@ const generateFileTree = (length = 1, full) => Array.from({ length }, () => {
   return `${full ? mode : ''} ${type} ${full ? object : ''}\t${file}`;
 }).join('\n');
 
-// TODO: rename to Array
 const generateHistoryArray = length => Array.from({ length }, () => ({
   hash: '091a8c3099bf60a80a98c4f9d71dfbc53f4a97a0',
   author: 'olgaDorio',
@@ -24,7 +23,6 @@ const generateHistoryArray = length => Array.from({ length }, () => ({
   msg: 'add eslint',
 }));
 
-// TODO: rename to Array
 const generateFileTreeArray = length => Array.from({ length }, () => ({
   type: 'blob',
   hash: 'c9d18582f6c7fb78fb2c611bcd6c0d5f87304072',
