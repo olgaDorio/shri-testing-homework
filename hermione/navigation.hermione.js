@@ -10,6 +10,7 @@ describe('Navigation', () => {
 
       return this.browser
         .url(directoryUrl)
+        .assertView('plain', dirSelector)
         .hasElements(dirSelector);
     });
   });
@@ -23,6 +24,7 @@ describe('Navigation', () => {
 
       return this.browser
         .url(fileUrl)
+        .assertView('plain', fileSelector)
         .hasClass(fileSelector, routes.valid.className);
     });
   });
@@ -33,6 +35,7 @@ describe('Navigation', () => {
 
       return this.browser
         .url(getUrl(route, true))
+        .assertView('plain', selector)
         .textContains(selector, message, true);
     });
   });
@@ -43,6 +46,7 @@ describe('Navigation', () => {
 
       return this.browser
         .url(getUrl(route, true))
+        .assertView('plain', selector)
         .textContains(selector, message, true);
     });
   });

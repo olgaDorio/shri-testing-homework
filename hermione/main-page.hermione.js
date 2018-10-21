@@ -4,6 +4,7 @@ describe('Main page', () => {
   it('Displays correct title', function () {
     return this.browser
       .url('/')
+      .assertView('plain', '.breadcrumbs')
       .textEquals('.breadcrumbs', title, true);
   });
 
