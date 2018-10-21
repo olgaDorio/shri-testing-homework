@@ -12,6 +12,10 @@ npm start
 ```sh
 selenium-standalone start # http://0.0.0.0:4444/wd/hub
 ```
+
+```sh
+npm run start
+```
 Далее
 
 `npm run itest` - запускает hermione  
