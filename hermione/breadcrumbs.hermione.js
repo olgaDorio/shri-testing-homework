@@ -42,7 +42,7 @@ describe('Breadcrumbs', () => {
       })
       .then(() => this.browser.textContains(selector.navigation, buffer, true))
       .hasElements(selector.content)
-      .assertView('plain', 'body')
+      .assertView('directory-plain', 'body')
 
       // check content on page with file
       .click(`a[href*="${file}"`)
@@ -51,7 +51,7 @@ describe('Breadcrumbs', () => {
       .checkLinks(selector.navigation, headerLinks)
       .textContains(selector.navigation, file)
       .hasElements(selector.fileContent)
-      .assertView('plain', 'body');
+      .assertView('content-plain', 'body');
   });
 
   it('Navigate up', function () {
